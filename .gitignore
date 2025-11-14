@@ -22,7 +22,6 @@
 *.swp
 *.tmp
 .DS_Store
-.DS_Store
 .coverage*
 .eggs/
 .env

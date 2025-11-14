@@ -1,0 +1,22 @@
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBITECODE=1\
+    PYTHONUNBUFFERED=1\
+    POETRY_HOME="/opt/poetry/" \
+    POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_CREATE=false \
+    PATH="/opt/poetry/bin:$PATH"
+
+WORKDIR /app
+
+RUN pip install --no-cache-dir poetry
+
+COPY pyproject.toml poetry.lock ./
+
+RUN poetry install --no-root
+
+COPY src ./src
+
+WORKDIR /app/src/
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

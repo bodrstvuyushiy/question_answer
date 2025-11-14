@@ -1,0 +1,53 @@
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+  "ruff (>=0.7.0,<0.8.0)",
+  "flake8 (>=7.1.1,<8.0.0)",
+  "pytest (>=8.3.3,<9.0.0)",
+  "pytest-django (>=4.9.0,<5.0.0)",
+  "django (==5.2.1)",
+  "djangorestframework (==3.14.0)",
+  "psycopg2-binary (>=2.9.9)",
+  "pytest-django (==4.11.1)",
+  "requests (>=2.32.5)",
+  "python-dotenv (>=1.0.1)",
+  "toml-sort (>=0.23.1,<0.24.0)",
+  "mypy (>=1.18.2,<2.0.0)",
+  "mypy-extensions (>=1.1.0,<2.0.0)",
+  "django-stubs (>=5.2.7,<6.0.0)"
+]
+
+[project]
+name = "question-answer"
+version = "0.1.0"
+description = ""
+authors = [
+  {name = "bodrstvuyushiy", email = "grapegregory@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+  "django (==5.2.1)",
+  "djangorestframework (==3.14.0)",
+  "psycopg2-binary (>=2.9.9,<3.0.0)"
+]
+
+[tool.django-stubs]
+django_settings_module = "core.settings"
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["mypy_django_plugin.main"]
+mypy_path = "src"
+explicit_package_bases = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["rest_framework", "rest_framework.*"]
+ignore_missing_imports = true
+
+[tool.poetry]
+package-mode = false
